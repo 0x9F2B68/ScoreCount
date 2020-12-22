@@ -1,6 +1,4 @@
-# import speech_recognition as SR
 import os
-# import sys
 from random import randint
 
 
