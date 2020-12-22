@@ -81,15 +81,15 @@ def ScoreBoard_lists():
 # мб когда нибудь сделаю нормально
 # (если смогу)
 def ScoreBoard_insert(score):
-    file = open('scoreboard.txt', 'r')
-    tmp = ""
-    check = file.readline()
-    for i in check:  # рекорд ли это?
-        if i != "|":
-            tmp += i
-        else:
-            break
-    file.close()
+    with open('scoreboard.txt', 'r') as file:
+        tmp = ""
+        check = file.readline()
+        for i in check:  # рекорд ли это?
+            if i != "|":
+                tmp += i
+            else:
+                break
+    
     # нужно ли вообще добавлять рекорд
     if int(tmp) < score:  # сравниваем с 1 потому что по возрастанию
         name = input("Введи свое имя: ")
@@ -104,13 +104,9 @@ def ScoreBoard_insert(score):
                 break
         points.reverse()
         leaders.reverse()
-        file = open("scoreboard.txt", "w")  # из массивов в файл
-        for i in range(0, 10):
-            file.write(str(points[i]))
-            file.write("|")
-            file.write(leaders[i])
-            file.write("\n")
-        file.close()
+        with  open("scoreboard.txt", "w") as file:  # из массивов в файл
+            for i in range(0, 10):
+                file.write(f"{ str(points[i]) },{ leaders[i] }\n")
 
 
 # функция чисто показывает на экран доску
